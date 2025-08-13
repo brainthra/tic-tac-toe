@@ -1,0 +1,11 @@
+# Include runtime deps
+-r requirements.txt
+
+# Dev & QA tools
+pytest
+pytest-cov
+black
+isort
+ruff
+mypy
+pre-commit

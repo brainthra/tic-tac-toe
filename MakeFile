@@ -1,0 +1,27 @@
+.PHONY: install install-dev format lint type test cov precommit
+
+install:
+	pip install -r requirements.txt
+
+install-dev:
+	pip install -r requirements-dev.txt
+	pre-commit install
+
+format:
+	black .
+	isort .
+
+lint:
+	ruff .
+
+type:
+	mypy .
+
+test:
+	pytest
+
+cov:
+	pytest --cov=engine --cov=players --cov=cli --cov-report=term-missing
+
+precommit:
+	pre-commit run --all-files

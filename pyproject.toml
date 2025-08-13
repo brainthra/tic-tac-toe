@@ -1,0 +1,46 @@
+[project]
+name = "tic-tac-toe-ai"
+version = "0.1.0"
+description = "Tic-Tac-Toe with multiple AI strategies (rules, minimax, etc.)"
+requires-python = ">=3.10"
+readme = "README.md"
+license = { text = "MIT" }
+
+[tool.black]
+line-length = 100
+target-version = ["py310", "py311", "py312"]
+
+[tool.isort]
+profile = "black"
+line_length = 100
+known_first_party = ["engine", "players", "cli", "gui", "tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+select = ["E", "F", "I", "UP", "B"]  # pyflakes/pycodestyle, isort, pyupgrade, bugbear
+ignore = ["E203"]  # black compatibility for slices
+exclude = ["gui/web/*"]
+
+[tool.mypy]
+python_version = "3.10"
+warn_unused_configs = true
+disallow_untyped_defs = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+strict_equality = true
+ignore_missing_imports = true
+plugins = []
+
+[tool.pytest.ini_options]
+addopts = "-q --cov=engine --cov=players --cov=cli --cov-report=term-missing"
+testpaths = ["tests"]
+
+[tool.coverage.run]
+branch = true
+source = ["engine", "players", "cli"]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
