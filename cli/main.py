@@ -6,6 +6,7 @@ Minimal CLI:
 """
 
 import argparse
+from typing import Any
 
 from engine.board import Board
 from players.random_bot import RandomBot
@@ -23,7 +24,7 @@ def render(board: Board) -> str:
     return "\n".join(rows)
 
 
-def make_player(kind: str, seed: int | None):
+def make_player(kind: str, seed: int | None) -> Any:
     kind = kind.lower()
     if kind == "random":
         return RandomBot(seed=seed)
@@ -53,7 +54,7 @@ def announce_result(board: Board) -> None:
         print("\nResult: draw.")
 
 
-def main():
+def main() -> None:
     parser = argparse.ArgumentParser(description="Play Tic-Tac-Toe in the terminal.")
     parser.add_argument("--x", choices=["human", "random"], default="human", help="Player X type")
     parser.add_argument("--o", choices=["human", "random"], default="random", help="Player O type")
