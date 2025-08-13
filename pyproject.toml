@@ -44,3 +44,9 @@ source = ["engine", "players", "cli"]
 [tool.coverage.report]
 show_missing = true
 skip_covered = true
+
+[tool.mypy]
+# ...your existing options...
+exclude = '(?x)(
+    ^tests/     # ignore tests
+)'

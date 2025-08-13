@@ -3,7 +3,7 @@
 from typing import List, Optional, Tuple
 
 class Board:
-    def __init__(self):
+    def __init__(self) -> None:
         # ' ' = empty, 'X' or 'O' = players
         self.state: List[str] = [' '] * 9
         self.current_player: str = 'X'

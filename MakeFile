@@ -12,7 +12,7 @@ format:
 	isort .
 
 lint:
-	ruff .
+	ruff check .
 
 type:
 	mypy .
