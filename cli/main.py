@@ -6,9 +6,10 @@ Minimal CLI:
 """
 
 import argparse
-from typing import Optional
+
 from engine.board import Board
 from players.random_bot import RandomBot
+
 
 def render(board: Board) -> str:
     s = board.state
@@ -21,7 +22,8 @@ def render(board: Board) -> str:
     ]
     return "\n".join(rows)
 
-def make_player(kind: str, seed: Optional[int]):
+
+def make_player(kind: str, seed: int | None):
     kind = kind.lower()
     if kind == "random":
         return RandomBot(seed=seed)
@@ -38,8 +40,10 @@ def make_player(kind: str, seed: Optional[int]):
                         print("Illegal move. Try again.")
                     except ValueError:
                         print("Please enter an integer 0-8.")
+
         return Human()
     raise ValueError(f"Unknown player type: {kind}")
+
 
 def announce_result(board: Board) -> None:
     w = board.winner()
@@ -47,6 +51,7 @@ def announce_result(board: Board) -> None:
         print(f"\nResult: {w} wins!")
     else:
         print("\nResult: draw.")
+
 
 def main():
     parser = argparse.ArgumentParser(description="Play Tic-Tac-Toe in the terminal.")
@@ -59,16 +64,25 @@ def main():
     o_player = make_player(args.o, seed=args.seed)
 
     board = Board()
-    print("\nCells are indexed as follows:\n 0 | 1 | 2 \n---+---+---\n 3 | 4 | 5 \n---+---+---\n 6 | 7 | 8 \n")
+    GRID_HELP = (
+        "\nCells are indexed as follows:\n"
+        " 0 | 1 | 2 \n"
+        "---+---+---\n"
+        " 3 | 4 | 5 \n"
+        "---+---+---\n"
+        " 6 | 7 | 8 \n"
+    )
+    print(GRID_HELP)
 
     while not board.is_terminal():
         print(render(board))
-        current = x_player if board.current_player == 'X' else o_player
+        current = x_player if board.current_player == "X" else o_player
         move = current.choose_move(board)
         board.apply_move(move)
 
     print(render(board))
     announce_result(board)
+
 
 if __name__ == "__main__":
     main()

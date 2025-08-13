@@ -1,7 +1,10 @@
 # players/random_bot.py
 import random
+
 from engine.board import Board
+
 from .base import Player
+
 
 class RandomBot(Player):
     """Baseline: choose uniformly among legal moves."""
