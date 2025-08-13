@@ -18,8 +18,8 @@ known_first_party = ["engine", "players", "cli", "gui", "tests"]
 [tool.ruff]
 line-length = 100
 target-version = "py310"
-select = ["E", "F", "I", "UP", "B"]  # pyflakes/pycodestyle, isort, pyupgrade, bugbear
-ignore = ["E203"]  # black compatibility for slices
+select = ["E", "F", "I", "UP", "B"]
+ignore = ["E203"]
 exclude = ["gui/web/*"]
 
 [tool.mypy]
@@ -32,9 +32,12 @@ warn_unused_ignores = true
 strict_equality = true
 ignore_missing_imports = true
 plugins = []
+exclude = '(?x)(
+    ^tests/     # ignore tests
+)'
 
 [tool.pytest.ini_options]
-addopts = "-q --cov=engine --cov=players --cov=cli --cov-report=term-missing"
+addopts = "-q --cov=engine --cov=players --cov=cli --cov-report=term-missing --cov-report=xml"
 testpaths = ["tests"]
 
 [tool.coverage.run]
@@ -44,9 +47,3 @@ source = ["engine", "players", "cli"]
 [tool.coverage.report]
 show_missing = true
 skip_covered = true
-
-[tool.mypy]
-# ...your existing options...
-exclude = '(?x)(
-    ^tests/     # ignore tests
-)'
