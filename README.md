@@ -3,7 +3,6 @@
 
 ![Python](https://img.shields.io/badge/python-3.10%2B-blue)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
-![Tests](https://img.shields.io/github/actions/workflow/status/brainthra/tic-tac-toe/python-app.yml?branch=main)
 ![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen)
 ![Coverage](https://img.shields.io/badge/coverage-pytest--cov-green)
 
