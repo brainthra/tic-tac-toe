@@ -10,6 +10,7 @@ from typing import Any
 
 from engine.board import Board
 from players.random_bot import RandomBot
+from players.rules_bot import RulesBot
 
 
 def render(board: Board) -> str:
@@ -28,6 +29,8 @@ def make_player(kind: str, seed: int | None) -> Any:
     kind = kind.lower()
     if kind == "random":
         return RandomBot(seed=seed)
+    if kind == "rules":
+        return RulesBot()
     if kind == "human":
         # Return a simple callable object with choose_move(board)
         class Human:
@@ -56,8 +59,12 @@ def announce_result(board: Board) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Play Tic-Tac-Toe in the terminal.")
-    parser.add_argument("--x", choices=["human", "random"], default="human", help="Player X type")
-    parser.add_argument("--o", choices=["human", "random"], default="random", help="Player O type")
+    parser.add_argument(
+        "--x", choices=["human", "random", "rules"], default="human", help="Player X type"
+    )
+    parser.add_argument(
+        "--o", choices=["human", "random", "rules"], default="random", help="Player O type"
+    )
     parser.add_argument("--seed", type=int, default=None, help="Random seed (for bots)")
     args = parser.parse_args()
 

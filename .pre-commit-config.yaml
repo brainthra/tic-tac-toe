@@ -28,3 +28,18 @@ repos:
       - id: check-yaml
       - id: end-of-file-fixer
       - id: trailing-whitespace
+
+  - repo: local
+    hooks:
+      - id: ci-fast
+        name: Local CI (fast)
+        entry: scripts/ci_local.sh
+        language: system
+        pass_filenames: false
+        stages: [pre-commit]
+      - id: ci-full
+        name: Local CI (full)
+        entry: scripts/ci_local.sh --full
+        language: system
+        pass_filenames: false
+        stages: [pre-push]

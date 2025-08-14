@@ -1,4 +1,4 @@
-.PHONY: install install-dev format lint type test cov precommit
+.PHONY: install install-dev format lint type test cov precommit ci ci-full
 
 install:
 	pip install -r requirements.txt
@@ -25,3 +25,9 @@ cov:
 
 precommit:
 	pre-commit run --all-files
+
+ci:
+	scripts/ci_local.sh
+
+ci-full:
+	scripts/ci_local.sh --full
