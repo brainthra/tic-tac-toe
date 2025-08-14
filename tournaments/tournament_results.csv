@@ -1,0 +1,7 @@
+X_bot,O_bot,games,X_wins,O_wins,draws
+random,rules,100,2,83,15
+random,minimax,100,0,78,22
+rules,random,100,97,0,3
+rules,minimax,100,0,0,100
+minimax,random,100,99,0,1
+minimax,rules,100,0,0,100
