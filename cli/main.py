@@ -9,6 +9,7 @@ import argparse
 from typing import Any
 
 from engine.board import Board
+from players.minimax_bot import MinimaxBot
 from players.random_bot import RandomBot
 from players.rules_bot import RulesBot
 
@@ -31,6 +32,8 @@ def make_player(kind: str, seed: int | None) -> Any:
         return RandomBot(seed=seed)
     if kind == "rules":
         return RulesBot()
+    if kind == "minimax":
+        return MinimaxBot()
     if kind == "human":
         # Return a simple callable object with choose_move(board)
         class Human:
